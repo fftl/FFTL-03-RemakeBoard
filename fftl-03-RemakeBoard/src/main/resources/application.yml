@@ -4,7 +4,7 @@ spring:
 
   #DB정보
   datasource:
-    url: jdbc:mysql://localhost:3306/fftl_03_RemakeBoard?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/fftl_03_remakeboard?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,7 +12,7 @@ spring:
   #JPA 정보
   jpa:
     show-sql: true
-    database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
       ddl-auto: create-drop
 
