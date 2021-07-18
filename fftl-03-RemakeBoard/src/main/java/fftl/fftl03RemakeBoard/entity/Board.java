@@ -8,10 +8,9 @@ import javax.persistence.*;
 @Getter
 public class Board {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int boardId;
+    private Long boardId;
 
     @Column
     private String title;

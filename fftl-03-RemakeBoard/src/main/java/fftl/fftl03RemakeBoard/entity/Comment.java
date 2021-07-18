@@ -10,7 +10,7 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int commentId;
+    private Long commentId;
 
     @Column
     private String nickname;
