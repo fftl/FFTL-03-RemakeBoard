@@ -1,29 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const BaseBox = styled.div`
-    width: 100px;
-    height: 100px;
-`;
-
-const RedBox = styled(BaseBox)`
-    background-color: #ff0032;
-`;
-
-const BlueBox = styled(BaseBox)`
-    background-color: #00eaff;
-`;
-
-const GreenBox = styled(BaseBox)`
-    background-color: green;
-`;
+import Body from './components/body';
+import Footer from './components/Footer';
+import Header from './components/header';
 
 function App() {
     return (
         <div>
-            <RedBox />
-            <BlueBox />
-            <GreenBox />
+            <Header />
+            <Body />
+            <Footer />
         </div>
     );
 }
