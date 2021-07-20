@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import io.jsonwebtoken.*;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,13 @@ import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor
+@Component
+/**
+ * Parameter 0 of constructor in fftl.fftl03RemakeBoard.controller.UserController required a bean of type 'fftl.fftl03RemakeBoard.config.security.JwtTokenProvider' that could not be found.
+ * Consider defining a bean of type 'fftl.fftl03RemakeBoard.config.security.JwtTokenProvider' in your configuration.
+ * 위의 Component 가 위 에러를 해결해주었다.
+ * */
+
 public class JwtTokenProvider {
 
     @Value("${spring.jwt.secret")
@@ -30,9 +38,9 @@ public class JwtTokenProvider {
     protected  void init() { secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes()); }
 
     //유저 정보와 등급을 통하여 토큰을 생성해냅니다.
-    public String createToken(String username, List<String> roles){
+    public String createToken(String username, String role){
         Claims claims = Jwts.claims().setSubject(username);
-        claims.put("roles", roles);
+        claims.put("role", role);
         Date now = new Date();
 
         return Jwts.builder()
