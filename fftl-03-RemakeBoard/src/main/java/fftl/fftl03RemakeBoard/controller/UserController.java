@@ -17,9 +17,15 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping(value="")
-    public Long saveUser(@RequestBody SaveUserDto saveUserDto){
+    public String saveUser(@RequestBody SaveUserDto saveUserDto){
         User user = userService.saveUser(saveUserDto);
-        return user.getUserId();
+        return user.getUserId().toString();
+    }
+
+    @GetMapping(value="/{userId}")
+    public String findUser(@RequestParam Long userId){
+        User user = userService.findByUserId(userId);
+        return user.toString();
     }
 
     @PostMapping(value="/login")
@@ -40,5 +46,21 @@ public class UserController {
         }
 
         return userToken;
+    }
+
+    @PatchMapping(value="")
+    public String updateUser(@RequestParam Long userId, @RequestBody SaveUserDto saveUserDto){
+        User user = userService.findByUserId(userId);
+        userService.updateUser(user, saveUserDto);
+
+        return "update success";
+    }
+
+    @DeleteMapping(value="")
+    public String deleteUser(@RequestParam Long userId){
+        User user = userService.findByUserId(userId);
+        userService.deleteUser(user);
+
+        return "delete success";
     }
 }

@@ -20,7 +20,7 @@ public class Comment {
     private String commentRegdate;
 
     @Column
-    private int boardId;
+    private Long boardId;
     @Column
-    private int userId;
+    private Long userId;
 }

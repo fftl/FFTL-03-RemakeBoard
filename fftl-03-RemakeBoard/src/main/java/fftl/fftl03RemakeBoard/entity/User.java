@@ -1,5 +1,6 @@
 package fftl.fftl03RemakeBoard.entity;
 
+import fftl.fftl03RemakeBoard.request.SaveUserDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,5 +29,10 @@ public class User {
     private String userRegdate;
     @Column
     private String role;
+
+    public void updateUser(SaveUserDto saveUserDto){
+        this.password = saveUserDto.getPassword();
+        this.nickname = saveUserDto.getNickname();
+    }
 
 }
