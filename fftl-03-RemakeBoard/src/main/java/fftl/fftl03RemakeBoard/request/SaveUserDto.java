@@ -25,7 +25,6 @@ public class SaveUserDto {
                 .password(password)
                 .nickname(nickname)
                 .userRegdate(userRegdate)
-                .role(role)
                 .build();
     }
 }

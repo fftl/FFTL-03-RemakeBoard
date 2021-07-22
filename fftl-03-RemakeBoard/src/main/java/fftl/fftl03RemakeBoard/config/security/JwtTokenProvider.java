@@ -1,5 +1,7 @@
 package fftl.fftl03RemakeBoard.config.security;
 
+import fftl.fftl03RemakeBoard.entity.User;
+import fftl.fftl03RemakeBoard.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,7 +31,7 @@ public class JwtTokenProvider {
     private String secretKey;
 
     private long tokenValidMilliSecond = 1000L * 60 * 120; //2시간 유효기간
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
     /**
      * 잘 모른다! 알아보자!
@@ -38,9 +40,9 @@ public class JwtTokenProvider {
     protected  void init() { secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes()); }
 
     //유저 정보와 등급을 통하여 토큰을 생성해냅니다.
-    public String createToken(String username, String role){
+    public String createToken(String username, List<String> roles){
         Claims claims = Jwts.claims().setSubject(username);
-        claims.put("role", role);
+        claims.put("roles", roles);
         Date now = new Date();
 
         return Jwts.builder()
@@ -52,7 +54,8 @@ public class JwtTokenProvider {
     }
 
     public Authentication getAuthentication(String token){
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserName(token));
+//        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserName(token));
+        UserDetails userDetails = userService.findByUsername(this.getUserName(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
@@ -69,9 +72,9 @@ public class JwtTokenProvider {
             return null;
         }
 
-        String realToken = myToken.substring("Bearer".length());
+//        String realToken = myToken.substring("Bearer".length());
 
-        return realToken;
+        return myToken;
     }
 
     //토큰의 유효기간이 지났는지 아닌지 확인한다.

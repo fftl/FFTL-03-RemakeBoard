@@ -6,6 +6,8 @@ import fftl.fftl03RemakeBoard.request.SaveBoardDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class BoardService {
@@ -17,19 +19,23 @@ public class BoardService {
         return board;
     }
 
+    public List<Board> findAllBoard(){
+        List<Board> boards = boardRepository.findAll();
+        return boards;
+    }
+
     public Long saveBoard(SaveBoardDto saveBoardDto){
         Board board = boardRepository.save(saveBoardDto.toEntity());
         return board.getBoardId();
     }
 
-    public Long updateBoard(Board board, SaveBoardDto saveBoardDto) {
+    public Board updateBoard(Board board, SaveBoardDto saveBoardDto) {
         board.updateBoard(saveBoardDto);
-        return board.getBoardId();
+        return board;
     }
 
-    public boolean deleteBoard(Board board){
+    public void deleteBoard(Board board){
         boardRepository.delete(board);
-        return true;
     }
 
 }

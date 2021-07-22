@@ -1,14 +1,18 @@
 package fftl.fftl03RemakeBoard.controller;
 
+import fftl.fftl03RemakeBoard.entity.Board;
 import fftl.fftl03RemakeBoard.request.SaveBoardDto;
 import fftl.fftl03RemakeBoard.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping(value = "/board")
 @RequiredArgsConstructor
 @RestController
 public class BoardController {
+
     private final BoardService boardService;
 
     @PostMapping(value="")
@@ -19,5 +23,32 @@ public class BoardController {
     }
 
     @GetMapping(value="/{boardId}")
-    public String
+    public String findOneBoard(@PathVariable Long boardId){
+        Board board = boardService.findByBoardId(boardId);
+
+        return board.toString();
+    }
+
+    @GetMapping(value="")
+    public List<Board> findAllBoard(){
+        List<Board> boards = boardService.findAllBoard();
+
+        return boards;
+    }
+
+    @PatchMapping(value="/{boardId}")
+    public String updateBoard(@PathVariable Long boardId, @RequestBody SaveBoardDto saveBoardDto){
+        Board board = boardService.findByBoardId(boardId);
+        Board updatedBoard = boardService.updateBoard(board, saveBoardDto);
+
+        return  updatedBoard.toString();
+    }
+
+    @DeleteMapping(value="/{boardId}")
+    public String deleteBoard(@PathVariable Long boardId){
+        Board board = boardService.findByBoardId(boardId);
+        boardService.deleteBoard(board);
+
+        return "success delete";
+    }
 }

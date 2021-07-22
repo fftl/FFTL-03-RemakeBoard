@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping(value="/{userId}")
-    public String findUser(@RequestParam Long userId){
+    public String findUser(@PathVariable Long userId){
         User user = userService.findByUserId(userId);
         return user.toString();
     }
@@ -42,22 +42,22 @@ public class UserController {
 
         if(check){
             System.out.println("check true!!");
-            userToken = jwtTokenProvider.createToken(user.getUsername(), user.getRole());
+            userToken = jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
         }
 
         return userToken;
     }
 
-    @PatchMapping(value="")
-    public String updateUser(@RequestParam Long userId, @RequestBody SaveUserDto saveUserDto){
+    @PatchMapping(value="{userId}")
+    public String updateUser(@PathVariable Long userId, @RequestBody SaveUserDto saveUserDto){
         User user = userService.findByUserId(userId);
         userService.updateUser(user, saveUserDto);
 
         return "update success";
     }
 
-    @DeleteMapping(value="")
-    public String deleteUser(@RequestParam Long userId){
+    @DeleteMapping(value="{userId}")
+    public String deleteUser(@PathVariable Long userId){
         User user = userService.findByUserId(userId);
         userService.deleteUser(user);
 

@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Builder
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Entity
 public class Board {
 

@@ -1,11 +1,18 @@
 package fftl.fftl03RemakeBoard.entity;
 
+import fftl.fftl03RemakeBoard.request.SaveCommentDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
+@Entity
 public class Comment {
 
     @Id
@@ -23,4 +30,8 @@ public class Comment {
     private Long boardId;
     @Column
     private Long userId;
+
+    public void updateContent(SaveCommentDto saveCommentDto){
+        this.content = saveCommentDto.getContent();
+    }
 }
