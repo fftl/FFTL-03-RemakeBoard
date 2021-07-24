@@ -15,6 +15,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
+    /** 댓글 입력 입니다. */
     @PostMapping(value="")
     public Comment saveComment(@RequestBody SaveCommentDto saveCommentDto){
         Comment comment = commentService.saveComment(saveCommentDto);
@@ -22,6 +23,7 @@ public class CommentController {
         return comment;
     }
 
+    /** 댓글 전체조회(게시글 기준) 입니다. */
     @GetMapping(value="/{boardId}")
     public List<Comment> findAllBoard(@PathVariable Long boardId){
         List<Comment> comments = commentService.findAllComment(boardId);
@@ -29,6 +31,7 @@ public class CommentController {
         return comments;
     }
 
+    /** 댓글 수정 입니다. */
     @PatchMapping(value="/{commentId}")
     public String updateComment(@PathVariable Long commentId, @RequestBody SaveCommentDto saveCommentDto){
         Comment comment = commentService.findByCommentId(commentId);
@@ -37,6 +40,7 @@ public class CommentController {
         return "success!";
     }
 
+    /** 댓글 삭제 입니다. */
     @DeleteMapping(value="/{commentId}")
     public String deleteBoard(@PathVariable Long commentId){
         Comment comment = commentService.findByCommentId(commentId);
@@ -44,5 +48,4 @@ public class CommentController {
 
         return "success!";
     }
-
 }

@@ -15,6 +15,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    /** 게시글 작성 입니다. */
     @PostMapping(value="")
     public String saveBoard(@RequestBody SaveBoardDto saveBoardDto){
         Long boardId = boardService.saveBoard(saveBoardDto);
@@ -22,6 +23,7 @@ public class BoardController {
         return boardId.toString();
     }
 
+    /** 게시글 조회 입니다. */
     @GetMapping(value="/{boardId}")
     public String findOneBoard(@PathVariable Long boardId){
         Board board = boardService.findByBoardId(boardId);
@@ -29,6 +31,7 @@ public class BoardController {
         return board.toString();
     }
 
+    /** 게시글 전체 조회 입니다. */
     @GetMapping(value="")
     public List<Board> findAllBoard(){
         List<Board> boards = boardService.findAllBoard();
@@ -36,6 +39,7 @@ public class BoardController {
         return boards;
     }
 
+    /** 게시글 수정 입니다. */
     @PatchMapping(value="/{boardId}")
     public String updateBoard(@PathVariable Long boardId, @RequestBody SaveBoardDto saveBoardDto){
         Board board = boardService.findByBoardId(boardId);
@@ -44,6 +48,7 @@ public class BoardController {
         return  updatedBoard.toString();
     }
 
+    /** 게시글 삭제 입니다. */
     @DeleteMapping(value="/{boardId}")
     public String deleteBoard(@PathVariable Long boardId){
         Board board = boardService.findByBoardId(boardId);
