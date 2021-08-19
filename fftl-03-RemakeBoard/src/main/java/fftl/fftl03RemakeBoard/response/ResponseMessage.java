@@ -21,6 +21,14 @@ public class ResponseMessage {
     public static final String UPDATE_BOARD = "게시글 정보 수정 성공";
     public static final String DELETE_BOARD = "게시글 삭제 성공";
 
+    /**
+     * COMMENT
+     * */
+    public static final String CREATED_COMMENT = "댓글 입력 성공";
+    public static final String GET_ALL_COMMENT = "해당 게시글의 모든 댓글 가져오기 성공";
+    public static final String UPDATE_COMMENT = "댓글 수정하기 성공";
+    public static final String DELETE_COMMENT = "댓글 삭제하기 성공";
+
     public static final String DB_ERROR = "데이터베이스 에러";
     public static final String INTERNAL_SERVER_ERROR = "서버 내부 에러";
 }
