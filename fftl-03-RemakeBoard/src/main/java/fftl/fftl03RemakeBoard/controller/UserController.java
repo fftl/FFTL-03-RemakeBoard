@@ -43,7 +43,7 @@ public class UserController {
         String username = jwtTokenProvider.getUserName(jwtTokenProvider.resolveToken(req));
         User user = userService.findByUsername(username);
 
-        return new ResponseEntity(DefaultResponse.response(StatusCode.OK, ResponseMessage.READ_USER), HttpStatus.OK);
+        return new ResponseEntity(DefaultResponse.response(StatusCode.OK, ResponseMessage.READ_USER, user), HttpStatus.OK);
     }
 
     /** 로그인 기능입니다. token을 반환해 줍니다. */
