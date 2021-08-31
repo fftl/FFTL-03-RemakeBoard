@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PostMain from '../post/PostMain';
 
 const MyBody = styled.div`
     min-width: 100%;
@@ -12,7 +13,11 @@ const MyBody = styled.div`
 `;
 
 function Body() {
-    return <MyBody className="MyBody"></MyBody>;
+    return (
+        <MyBody className="MyBody">
+            <PostMain />
+        </MyBody>
+    );
 }
 
 export default Body;
