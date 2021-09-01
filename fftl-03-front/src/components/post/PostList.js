@@ -1,50 +1,43 @@
 import React from 'react';
+import CommonTable from '../table/CommonTable';
+import CommonTableRow from '../table/CommonTableRow';
+import CommonTableColumn from '../table/CommonTableColumn';
 
 const PostList = props => {
     return (
         <>
-            <table>
-                <thead>
-                    <tr>
-                        <th>글번호</th>
-                        <th>제목</th>
-                        <th>등록일</th>
-                        <th>조회수</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>첫번째 게시글입니다.</td>
-                        <td>2020-10-25</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>두번째 게시글입니다.</td>
-                        <td>2020-10-25</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>세번째 게시글입니다.</td>
-                        <td>2020-10-25</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>네번째 게시글입니다.</td>
-                        <td>2020-10-25</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>다섯번째 게시글입니다.</td>
-                        <td>2020-10-25</td>
-                        <td>4</td>
-                    </tr>
-                </tbody>
-            </table>
+            <CommonTable headersName={['글번호', '제목', '등록일', '조회수']}>
+                <CommonTableRow>
+                    <CommonTableColumn>1</CommonTableColumn>
+                    <CommonTableColumn>첫번째 게시글입니다.</CommonTableColumn>
+                    <CommonTableColumn>2020-10-25</CommonTableColumn>
+                    <CommonTableColumn>6</CommonTableColumn>
+                </CommonTableRow>
+                <CommonTableRow>
+                    <CommonTableColumn>2</CommonTableColumn>
+                    <CommonTableColumn>두번째 게시글입니다.</CommonTableColumn>
+                    <CommonTableColumn>2020-10-25</CommonTableColumn>
+                    <CommonTableColumn>5</CommonTableColumn>
+                </CommonTableRow>
+                <CommonTableRow>
+                    <CommonTableColumn>3</CommonTableColumn>
+                    <CommonTableColumn>세번째 게시글입니다.</CommonTableColumn>
+                    <CommonTableColumn>2020-10-25</CommonTableColumn>
+                    <CommonTableColumn>1</CommonTableColumn>
+                </CommonTableRow>
+                <CommonTableRow>
+                    <CommonTableColumn>4</CommonTableColumn>
+                    <CommonTableColumn>네번째 게시글입니다.</CommonTableColumn>
+                    <CommonTableColumn>2020-10-25</CommonTableColumn>
+                    <CommonTableColumn>2</CommonTableColumn>
+                </CommonTableRow>
+                <CommonTableRow>
+                    <CommonTableColumn>5</CommonTableColumn>
+                    <CommonTableColumn>다섯번째 게시글입니다.</CommonTableColumn>
+                    <CommonTableColumn>2020-10-25</CommonTableColumn>
+                    <CommonTableColumn>4</CommonTableColumn>
+                </CommonTableRow>
+            </CommonTable>
         </>
     );
 };
