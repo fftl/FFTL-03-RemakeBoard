@@ -1,14 +1,17 @@
 import React from 'react';
-import Body from './components/commons/Body';
-import Footer from './components/commons/Footer';
-import Header from './components/commons/Header';
+import { Route, Switch } from 'react-router';
+import ArticlePage from './components/views/ArticlePage/ArticlePage';
+import BoardPage from './components/views/BoardPage/BoardPage';
+import RegisterPage from './components/views/RegisterPage/RegisterPage';
 
 function App() {
     return (
         <div>
-            <Header />
-            <Body />
-            <Footer />
+            <Switch>
+                <Route exact path="/" component={BoardPage} />
+                <Route exact path="/article/:articleId" component={ArticlePage} />
+                <Route exact path="/register" component={RegisterPage} />
+            </Switch>
         </div>
     );
 }
